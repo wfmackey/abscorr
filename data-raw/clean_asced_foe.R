@@ -44,15 +44,23 @@ foe6 <- raw %>%
 
 
 # Join into wide ascedupation list
-asced_foe <- foe2 %>%
+asced_foe_c <- foe2 %>%
   left_join(foe4) %>%
   left_join(foe6) %>%
   mutate(foe2 = str_to_title(foe2),       # "Natural And Physical Sciences"
          foe2 = tools::toTitleCase(foe2)) # "Natural and Physical Sciences"
 
 
+# Create factor alternative; the default
+asced_foe <- asced_foe_c %>%
+  mutate(foe2 = as_factor(foe2),
+         foe4 = as_factor(foe4),
+         foe6 = as_factor(foe6))
+
+
 # Export
 save(asced_foe, file = "data/asced_foe.rda", compress = "xz")
+save(asced_foe_c, file = "data/asced_foe_c.rda", compress = "xz")
 
 
 

@@ -44,13 +44,20 @@ qual3 <- raw %>%
 
 
 # Join into wide ascedupation list
-asced_qual <- qual1 %>%
+asced_qual_c <- qual1 %>%
   left_join(qual2) %>%
   left_join(qual3) %>%
   mutate(qual1 = str_to_title(qual1),       # "Natural And Physical Sciences"
-         qual1 = tools::toTitleCase(qual1)) # "Natural and Physical Sciences"
+         qual1 = tools::toTitleCase(qual1))  # "Natural and Physical Sciences"
 
+
+# Create factor alternative; the default
+asced_qual <- asced_qual_c %>%
+  mutate(qual1 = as_factor(qual1),
+         qual2 = as_factor(qual2),
+         qual3 = as_factor(qual3))
 
 # Export
 save(asced_qual, file = "data/asced_qual.rda", compress = "xz")
+save(asced_qual_c, file = "data/asced_qual_c.rda", compress = "xz")
 

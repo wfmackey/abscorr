@@ -67,7 +67,7 @@ anzsco5 <- raw %>%
          anzsco1_code = substr(anzsco2_code, 1, 1))
 
 # Join into wide anzscoupation list
-anzsco_c <- anzsco1 %>%
+anzsco <- anzsco1 %>%
   left_join(anzsco2) %>%
   left_join(anzsco3) %>%
   left_join(anzsco4) %>%
@@ -77,15 +77,9 @@ anzsco_c <- anzsco1 %>%
          skill_level = as.character(skill_level))
 
 
-anzsco <- anzsco_c %>%
-  mutate(anzsco1 = as_factor(anzsco1),
-         anzsco2 = as_factor(anzsco2),
-         anzsco3 = as_factor(anzsco3),
-         anzsco4 = as_factor(anzsco4),
-         anzsco5 = as_factor(anzsco5))
-
 # Export
 save(anzsco, file = "data/anzsco.rda", compress = "xz")
-save(anzsco_c, file = "data/anzsco_c.rda", compress = "xz")
+
+
 
 

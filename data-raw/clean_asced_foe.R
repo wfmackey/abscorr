@@ -34,7 +34,8 @@ foe4 <- raw %>%
   filter(!is.na(x2)) %>%
   select(foe4_code = 2,
          foe4 = 3) %>%
-  mutate(foe2_code = substr(foe4_code, 1, 2))
+  mutate(foe4_f = as_factor(foe4),
+         foe2_code = substr(foe4_code, 1, 2))
 
 foe6 <- raw %>%
   anti_join(foe2, by = c("x2" = "foe2")) %>%
@@ -42,7 +43,8 @@ foe6 <- raw %>%
   filter(!is.na(x3)) %>%
   select(foe6_code = 3,
          foe6 = 4) %>%
-  mutate(foe4_code = substr(foe6_code, 1, 4),
+  mutate(foe6_f = as_factor(foe6),
+         foe4_code = substr(foe6_code, 1, 4),
          foe2_code = substr(foe4_code, 1, 2))
 
 

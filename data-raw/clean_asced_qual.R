@@ -24,14 +24,18 @@ qual1 <- raw %>%
   filter(!is.na(x1)) %>%
   select(qual1_code = 1,
          qual1 = 2) %>%
-  mutate(qual1_code = as.character(qual1_code))
+  mutate(qual1_f = str_to_title(qual1),       # "Natural And Physical Sciences"
+         qual1_f = tools::toTitleCase(qual1_f),
+         qual1_f = as_factor(qual1_f),
+         qual1_code = as.character(qual1_code))
 
 qual2 <- raw %>%
   anti_join(qual1, by = c("x2" = "qual1")) %>%
   filter(!is.na(x2)) %>%
   select(qual2_code = 2,
          qual2 = 3) %>%
-  mutate(qual1_code = substr(qual2_code, 1, 1))
+  mutate(qual2_f = as_factor(qual2),
+         qual1_code = substr(qual2_code, 1, 1))
 
 qual3 <- raw %>%
   anti_join(qual1, by = c("x2" = "qual1")) %>%
@@ -39,7 +43,8 @@ qual3 <- raw %>%
   filter(!is.na(x3)) %>%
   select(qual3_code = 3,
          qual3 = 4) %>%
-  mutate(qual2_code = substr(qual3_code, 1, 2),
+  mutate(qual3_f = as_factor(qual3),
+         qual2_code = substr(qual3_code, 1, 2),
          qual1_code = substr(qual2_code, 1, 1))
 
 

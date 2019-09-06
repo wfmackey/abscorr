@@ -23,14 +23,18 @@ anzsco1 <- raw %>%
   filter(!is.na(x1)) %>%
   select(anzsco1_code = 1,
          anzsco1 = 2) %>%
-  mutate(anzsco1_code = as.character(anzsco1_code))
+  mutate(anzsco1_f = str_to_title(anzsco1),  # address capitals
+         anzsco1_f = tools::toTitleCase(anzsco1_f),
+         anzsco1_f = as_factor(anzsco1_f),
+         anzsco1_code = as.character(anzsco1_code))
 
 anzsco2 <- raw %>%
   anti_join(anzsco1, by = c("x2" = "anzsco1")) %>%
   filter(!is.na(x2)) %>%
   select(anzsco2_code = 2,
          anzsco2 = 3) %>%
-  mutate(anzsco1_code = substr(anzsco2_code, 1, 1))
+  mutate(anzsco2_f = as_factor(anzsco2),
+         anzsco1_code = substr(anzsco2_code, 1, 1))
 
 anzsco3 <- raw %>%
   anti_join(anzsco1, by = c("x2" = "anzsco1")) %>%
@@ -38,7 +42,8 @@ anzsco3 <- raw %>%
   filter(!is.na(x3)) %>%
   select(anzsco3_code = 3,
          anzsco3 = 4) %>%
-  mutate(anzsco2_code = substr(anzsco3_code, 1, 2),
+  mutate(anzsco3_f = as_factor(anzsco3),
+         anzsco2_code = substr(anzsco3_code, 1, 2),
          anzsco1_code = substr(anzsco2_code, 1, 1))
 
 anzsco4 <- raw %>%
@@ -48,7 +53,8 @@ anzsco4 <- raw %>%
   filter(!is.na(x4)) %>%
   select(anzsco4_code = 4,
          anzsco4 = 5) %>%
-  mutate(anzsco3_code = substr(anzsco4_code, 1, 3),
+  mutate(anzsco4_f = as_factor(anzsco4),
+         anzsco3_code = substr(anzsco4_code, 1, 3),
          anzsco2_code = substr(anzsco3_code, 1, 2),
          anzsco1_code = substr(anzsco2_code, 1, 1))
 
@@ -61,7 +67,8 @@ anzsco5 <- raw %>%
   select(anzsco5_code = 5,
          anzsco5 = 6,
          skill_level = 7) %>%
-  mutate(anzsco4_code = substr(anzsco5_code, 1, 4),
+  mutate(anzsco5_f = as_factor(anzsco5),
+         anzsco4_code = substr(anzsco5_code, 1, 4),
          anzsco3_code = substr(anzsco4_code, 1, 3),
          anzsco2_code = substr(anzsco3_code, 1, 2),
          anzsco1_code = substr(anzsco2_code, 1, 1))

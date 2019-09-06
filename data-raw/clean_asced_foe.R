@@ -24,7 +24,10 @@ foe2 <- raw %>%
   filter(!is.na(x1)) %>%
   select(foe2_code = 1,
          foe2 = 2) %>%
-  mutate(foe2_code = as.character(foe2_code))
+  mutate(foe2_f = str_to_title(foe2),       # "Natural And Physical Sciences"
+         foe2_f = tools::toTitleCase(foe2_f),
+         foe2_f = as_factor(foe2_f),
+         foe2_code = as.character(foe2_code))
 
 foe4 <- raw %>%
   anti_join(foe2, by = c("x2" = "foe2")) %>%

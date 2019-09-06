@@ -7,14 +7,19 @@
 #' \describe{
 #' \item{\code{anzsco1_code}}{Major ANZSCO group codes, e.g. "4"}
 #' \item{\code{anzsco1}}{Major ANZSCO group names in title case, e.g. "Community and Personal Service Workers"}
+#' \item{\code{anzsco1_f}}{Factor version of \code{anzsco1}.}
 #' \item{\code{anzsco2_code}}{Sub-major ANZSCO group codes, e.g. "45"}
 #' \item{\code{anzsco2}}{Sub-major ANZSCO group names in title case, e.g. "Sports and Personal Service Workers"}
+#' \item{\code{anzsco2_f}}{Factor version of \code{anzsco2}.}
 #' \item{\code{anzsco3_code}}{Minor ANZSCO group codes, e.g. "452"}
 #' \item{\code{anzsco3}}{Minor ANZSCO group names in title case, e.g. "Sports and Fitness Workers"}
+#' \item{\code{anzsco3_f}}{Factor version of \code{anzsco3}.}
 #' \item{\code{anzsco4_code}}{Unit ANZSCO group codes, e.g. "4523"}
 #' \item{\code{anzsco4}}{Unit ANZSCO group names in title case, e.g. "Sports Coaches, Instructors and Officials"}
+#' \item{\code{anzsco4_f}}{Factor version of \code{anzsco4}.}
 #' \item{\code{anzsco5_code}}{Occupation ANZSCO group codes, e.g. "452311"}
 #' \item{\code{anzsco5}}{Occupation ANZSCO group names in title case, e.g. "Diving Instructor (Open Water)"}
+#' \item{\code{anzsco5_f}}{Factor version of \code{anzsco5}.}
 #' \item{\code{skill_level}}{Skill level required for occupation, determined by the ABS (1 is highest, 5 is lowest).
 #' See \url{https://www.abs.gov.au/ausstats/abs@.nsf/Previousproducts/C4BECE1704987586CA257089001A9181 } for details.}
 #' }
@@ -30,10 +35,13 @@
 #' \describe{
 #' \item{\code{foe2_code}}{Broad field of education two-digit code, e.g. "09"}
 #' \item{\code{foe2}}{Broad field of education two-digit name in title case, e.g. "Society and Culture"}
+#' \item{\code{foe2_f}}{Factor version of \code{foe2}.}
 #' \item{\code{foe4_code}}{Narrow field of education four-digit code, e.g. "0921"}
 #' \item{\code{foe4}}{Narrow field of education four-digit name in title case, e.g. "Sport and Recreation"}
+#' \item{\code{foe4_f}}{Factor version of \code{foe4}.}
 #' \item{\code{foe6_code}}{Detailed field of education six-digit code, e.g. "092103"}
 #' \item{\code{foe6}}{Detailed field of education six-digit name in title case, e.g. "Sports Coaching, Officiating and Instruction"}
+#' \item{\code{foe6_f}}{Factor version of \code{foe6}.}
 #' }
 "asced_foe"
 
@@ -47,10 +55,13 @@
 #' \describe{
 #' \item{\code{qual1_code}}{Broad qualification level one-digit code, e.g. "1"}
 #' \item{\code{qual1}}{Broad qualification level one-digit name in title case, e.g. "Postgraduate Degree Level"}
+#' \item{\code{qual1_f}}{Factor version of \code{qual1}.}
 #' \item{\code{qual2_code}}{Narrow qualification level two-digit code, e.g. "12"}
 #' \item{\code{qual2}}{Narrow qualification level two-digit name in title case, e.g. "Master Degree Level"}
+#' \item{\code{qual2_f}}{Factor version of \code{qual2}.}
 #' \item{\code{qual3_code}}{Detailed qualification level three-digit code, e.g. "122"}
 #' \item{\code{qual3}}{Detailed qualification level three-digit name in title case, e.g. "Master Degree by Coursework"}
+#' \item{\code{qual3_f}}{Factor version of \code{qual3}.}
 #' }
 "asced_qual"
 

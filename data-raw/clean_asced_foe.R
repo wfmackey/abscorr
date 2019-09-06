@@ -3,6 +3,9 @@
 library(tidyverse)
 library(glue)
 
+# fun for captial -> title case
+to_title <- function(x) str_to_title(x) %>% tools::toTitleCase()
+
 
 asced_url <- "https://www.abs.gov.au/AUSSTATS/subscriber.nsf/log?openagent&1272.0%20australian%20standard%20classification%20of%20education%20(asced)%20structures.xls&1272.0&Data%20Cubes&B286FC6C1777688DCA257ECB001657BC&0&2001&29.09.2015&Latest"
 
@@ -24,18 +27,18 @@ foe2 <- raw %>%
   filter(!is.na(x1)) %>%
   select(foe2_code = 1,
          foe2 = 2) %>%
-  mutate(foe2_f = str_to_title(foe2),       # "Natural And Physical Sciences"
-         foe2_f = tools::toTitleCase(foe2_f),
-         foe2_f = as_factor(foe2_f),
+  mutate(foe2_f = as_factor(foe2),
          foe2_code = as.character(foe2_code))
 
+
 foe4 <- raw %>%
+  mutate(x2 = to_title(x2)) %>%
   anti_join(foe2, by = c("x2" = "foe2")) %>%
   filter(!is.na(x2)) %>%
   select(foe4_code = 2,
          foe4 = 3) %>%
-  mutate(foe4_f = as_factor(foe4),
-         foe2_code = substr(foe4_code, 1, 2))
+  mutate(foe2_code = substr(foe4_code, 1, 2))
+
 
 foe6 <- raw %>%
   anti_join(foe2, by = c("x2" = "foe2")) %>%
@@ -54,6 +57,7 @@ asced_foe <- foe2 %>%
   left_join(foe6) %>%
   mutate(foe2 = str_to_title(foe2),       # "Natural And Physical Sciences"
          foe2 = tools::toTitleCase(foe2)) # "Natural and Physical Sciences"
+
 
 
 # Export

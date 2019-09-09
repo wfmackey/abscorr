@@ -37,7 +37,7 @@ test_that("asced_foe is as-expected", {
   # Check non-title labels
   expect_equal(asced_foe[[2]][200], "Health")
   # Check title labels
-  expect_equal(asced_foe[[2]][150], "Agriculture, Environmental and Related Studies")
+  expect_equal(asced_foe[[2]][150], "Architecture and Building")
   # Check digit conversion
   expect_identical(asced_foe$foe2_code,
                    substr(asced_foe$foe6_code, 1, 2))

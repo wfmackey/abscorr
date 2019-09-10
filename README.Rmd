@@ -1,0 +1,85 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+data_path <- "man/data/egdata.csv"
+```
+# abscorr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of abscorr is to provide easy access to common ABS structures, like
+the Australian and New Zealand Standard Classification of Occupations (ANZSCO) 
+and the Australian Standard Classification of Education (ASCED). 
+
+Installation and examples below.
+
+I'll be adding commonly-used structures as I use them myself. If you'd like 
+to request one, let me know via a Github issue or email at [wfmackey@gmail.com](mailto:wfmackey@gmail.com).
+
+## Installation
+
+You can install the current version of `abscorr` from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("wfmackey/abscorr")
+```
+## Example
+
+```{r example, message=FALSE}
+library(tidyverse)
+library(abscorr)
+
+glimpse(anzsco)
+
+glimpse(asced_foe)
+
+```
+
+
+These tibbles can be tweaked and joined to your existing datasets. For example,
+given a dataset of Australians by four-digit field of education and age group:
+
+```{r}
+
+data <- read_csv(data_path)
+
+glimpse(data)
+
+```
+
+We can retrieve the four-digit fields and their corresponding two-digit fields
+from `abscorr::asced_foe`:
+
+```{r}
+join_foe2 <- abscorr::asced_foe %>% 
+  select(foe2, foe4) %>%   # just keep the variables you want
+  distinct()               # only keep unique observations
+
+join_foe2
+
+```
+
+And join with our original dataset:
+
+```{r}
+
+data %>% 
+  left_join(join_foe2)
+
+```
+
+Beaut. 
+

@@ -19,9 +19,15 @@ data_path <- "man/data/egdata.csv"
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of abscorr is to provide easy access to common ABS structures, like
+`abscorr` is an R package that helps you deal with ABS correspondences. 
+
+**For the moment**, `abscorr` provides easy access to common ABS structures, like
 the Australian and New Zealand Standard Classification of Occupations (ANZSCO) 
 and the Australian Standard Classification of Education (ASCED). 
+
+**In the future**, it will contain correspondence functions 
+(kind of like `absmapsdata::get_correspondence_absmaps`) for imperfect correspondence matching.
+
 
 Installation and examples below.
 

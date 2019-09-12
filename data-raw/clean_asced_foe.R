@@ -71,12 +71,38 @@ nfd4 <- comb %>%
   mutate(foe6 = glue("{foe4}, nfd"),
          foe6_code = glue("{foe4_code}00"))
 
+# Short version of foe2
+foe2_list <- comb$foe2 %>% unique()
+
+foe2_shortlist <- c(
+  "Science",
+  "IT",
+  "Engineering",
+  "Architecture",
+  "Agriculture",
+  "Health",
+  "Education",
+  "Commerce",
+  "Society & culture",
+  "Creative arts",
+  "Hospitality",
+  "Mixed fields")
+
+foe2_short_join <- tibble(
+  foe2 = foe2_list,
+  foe2_short = foe2_shortlist,
+  foe2_short_f = as_factor(foe2_short)
+)
+
 asced_foe <- bind_rows(comb, nfd2, nfd4) %>%
   arrange(foe2_code, foe4_code, foe6_code) %>%
   mutate(foe2_f = as_factor(foe2),
          foe4_f = as_factor(foe4),
-         foe6_f = as_factor(foe6)) %>%
+         foe6_f = as_factor(foe6),
+         ) %>%
+  left_join(foe2_short_join) %>%
   select(foe2_code, foe2, foe2_f,
+         foe2_short, foe2_short_f,
          foe4_code, foe4, foe4_f,
          foe6_code, foe6, foe6_f)
 

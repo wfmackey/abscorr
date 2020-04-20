@@ -35,10 +35,14 @@ group_nfd <- anzsic_raw %>%
          anzsic_class_title = anzsic_group_title,
          anzsic_class_code = anzsic_group_code * 10)
 
+top_div_codes <- anzsic_raw %>%
+  distinct(anzsic_division_title, anzsic_division_code, anzsic_subdivision_code) %>%
+  group_by(anzsic_division_code, anzsic_division_title) %>%
+  summarise(anzsic_subdivision_code = min(anzsic_subdivision_code))
 
 subdivision_nfd <- anzsic_raw %>%
-  distinct(anzsic_division_title, anzsic_division_code,
-           anzsic_subdivision_code) %>%
+  group_by(anzsic_division_code, anzsic_division_title) %>%
+  summarise(anzsic_subdivision_code = min(anzsic_subdivision_code)) %>%
   mutate(anzsic_subdivision_title = glue("{anzsic_division_title}, nfd"),
          anzsic_group_title = anzsic_subdivision_title,
          anzsic_group_code = anzsic_subdivision_code * 10,
